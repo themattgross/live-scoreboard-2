@@ -1,1 +1,46 @@
-<p>mlb works!</p>
+<h2 class="text-center">{{scoreboardData?.leagues?.[0]?.abbreviation}}</h2>
+
+<div *ngIf="scoreboardData?.events?.length > 0" class="container">
+    <div class="row">
+      <div *ngFor="let event of scoreboardData?.events" class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="game">
+              <div class="row">
+                <div class="col-8">
+                  <div class="row">
+                    <div class="col-8">
+                      <span class="d-block">{{event.competitions?.[0]?.competitors?.[1]?.team?.location}}</span>
+                      <span class="d-block"><strong>{{event.competitions?.[0]?.competitors?.[1]?.team?.name}}</strong></span>
+                    </div>
+                    <div class="col-4 align-content-center">
+                        <span *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS'">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-8">
+                        <span class="d-block">{{event.competitions?.[0]?.competitors?.[0]?.team?.location}}</span>
+                        <span class="d-block"><strong>{{event.competitions?.[0]?.competitors?.[0]?.team?.name}}</strong></span>
+                    </div>
+                    <div class="col-4 align-content-center">
+                        <span *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS'">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 text-center align-content-center">
+                    <div *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS'">
+                        <span class="d-block">{{event.competitions?.status?.type?.shortDetail}}</span>
+                        <span class="d-block">{{event.competitions?.[0]?.situation?.balls}}-{{event.competitions?.[0]?.situation?.strikes}}</span>
+                        <span class="d-block">{{event.competitions?.outsText}}</span>
+                    </div>
+                    <div *ngIf="event.status?.type?.name == 'STATUS_SCHEDULED'">
+                        <span class="d-block">Pregame</span>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
