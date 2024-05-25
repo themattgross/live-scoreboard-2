@@ -25,6 +25,13 @@ export class ScoresService {
     return this.getData(sport, league); // Call getData with sport and league values
   }
 
+  getMls(): Observable<any> {
+    const sport = "soccer";
+    const league = "usa.1";
+
+    return this.getData(sport, league); // Call getData with sport and league values
+  }
+
   getData(sport: string, league: string): Observable<any> { // Replace 'any' with a specific interface if known
     const apiUrl = `${this.scoreboardApiUrl}/${sport}/${league}/scoreboard`;
 

@@ -1,0 +1,64 @@
+<h2 class="text-center">{{scoreboardData?.leagues?.[0]?.abbreviation}}</h2>
+
+<div *ngIf="scoreboardData?.events?.length > 0" class="container">
+    <div class="row">
+      <p><small>Data refreshes automatically every 5 minutes.</small></p>
+      <div *ngFor="let event of scoreboardData?.events" class="col-lg-4">
+        <div class="card my-3">
+          <div class="card-body">
+            <div class="game">
+              <div class="row">
+                <div class="col-6">
+                  <div class="row">
+                    <div class="col-10 d-flex">
+                        <div class="team-logo" style="width: 47px;">
+                            <img class="img-fluid" src="{{event.competitions?.[0]?.competitors?.[1]?.team?.logo}}">
+                        </div>
+                        <div class="d-block team-block">
+                            <span class="d-block team-name">{{event.competitions?.[0]?.competitors?.[1]?.team?.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-2 align-content-center ml-auto">
+                        <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL'">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-10 d-flex">
+                        <div class="team-logo" style="width: 47px;">
+                            <img class="img-fluid" src="{{event.competitions?.[0]?.competitors?.[0]?.team?.logo}}">
+                        </div>
+                        <div class="d-block">
+                            <span class="d-block team-name">{{event.competitions?.[0]?.competitors?.[0]?.team?.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-2 align-content-center">
+                        <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL'">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 text-center align-content-center">
+                    <div *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_HALFTIME'|| event.status?.type?.name == 'STATUS_END_PERIOD'">
+                        <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
+                        <span class="d-block">{{event.competitions?.[0]?.outsText}}</span>
+                    </div>
+                    <div *ngIf="event.status?.type?.name == 'STATUS_SCHEDULED'">
+                        <span class="d-block">{{event.competitions?.[0]?.date | date:'M/dd, h:mm a'}}</span>
+                        
+                    </div>
+                    <div *ngIf="event.status?.type?.name == 'STATUS_RAIN_DELAY' || event.status?.type?.name == 'STATUS_DELAYED'">
+                        <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
+                    </div>
+                    <div *ngIf="event.status?.type?.name == 'STATUS_FINAL'">
+                        <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
+                    </div>
+                    <div *ngIf="event.status?.type?.name == 'STATUS_POSTPONED'">
+                        <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
