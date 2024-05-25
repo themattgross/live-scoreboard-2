@@ -38,12 +38,12 @@
                   </div>
                 </div>
                 <div class="col-6 text-center align-content-center">
-                    <div *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS'">
+                    <div *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_HALFTIME'">
                         <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
                         <span class="d-block">{{event.competitions?.[0]?.outsText}}</span>
                     </div>
                     <div *ngIf="event.status?.type?.name == 'STATUS_SCHEDULED'">
-                        <span class="d-block">{{event.competitions?.[0]?.date | date:'h:mm a'}}</span>
+                        <span class="d-block">{{event.competitions?.[0]?.date | date:'M/dd, h:mm a'}}</span>
                         
                     </div>
                     <div *ngIf="event.status?.type?.name == 'STATUS_RAIN_DELAY' || event.status?.type?.name == 'STATUS_DELAYED'">
