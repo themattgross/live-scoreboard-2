@@ -18,6 +18,13 @@ export class ScoresService {
     return this.getData(sport, league); // Call getData with sport and league values
   }
 
+  getUfl(): Observable<any> {
+    const sport = "football";
+    const league = "ufl";
+
+    return this.getData(sport, league); // Call getData with sport and league values
+  }
+
   getData(sport: string, league: string): Observable<any> { // Replace 'any' with a specific interface if known
     const apiUrl = `${this.scoreboardApiUrl}/${sport}/${league}/scoreboard`;
 
