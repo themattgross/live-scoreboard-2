@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ScoresService } from '../scores.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NgIf } from '@angular/common';
-import { NgFor } from '@angular/common';
+import { NgIf, NgFor, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-mlb',
   standalone: true,
-  imports: [HttpClientModule, NgIf, NgFor],
+  imports: [HttpClientModule, NgIf, NgFor, CommonModule],
   templateUrl: './mlb.component.html',
   styleUrl: './mlb.component.scss',
 })

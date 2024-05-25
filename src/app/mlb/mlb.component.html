@@ -44,7 +44,8 @@
                         <span class="d-block">{{event.competitions?.[0]?.outsText}}</span>
                     </div>
                     <div *ngIf="event.status?.type?.name == 'STATUS_SCHEDULED'">
-                        <span class="d-block">Pregame</span>
+                        <span class="d-block">{{event.competitions?.[0]?.date | date:'h:mm a'}}</span>
+                        
                     </div>
                     <div *ngIf="event.status?.type?.name == 'STATUS_RAIN_DELAY' || event.status?.type?.name == 'STATUS_DELAYED'">
                         <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
