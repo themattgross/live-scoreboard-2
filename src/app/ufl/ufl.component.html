@@ -2,6 +2,7 @@
 
 <div *ngIf="scoreboardData?.events?.length > 0" class="container">
     <div class="row">
+      <p><small>Data refreshes automatically every 5 minutes.</small></p>
       <div *ngFor="let event of scoreboardData?.events" class="col-lg-4">
         <div class="card my-3">
           <div class="card-body">
@@ -38,7 +39,7 @@
                   </div>
                 </div>
                 <div class="col-6 text-center align-content-center">
-                    <div *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_HALFTIME'">
+                    <div *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_HALFTIME'|| event.status?.type?.name == 'STATUS_END_PERIOD'">
                         <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
                         <span class="d-block">{{event.competitions?.[0]?.outsText}}</span>
                     </div>
