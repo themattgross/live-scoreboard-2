@@ -8,35 +8,35 @@
           <div class="card-body">
             <div class="game">
               <div class="row">
-                <div class="col-6">
-                  <div class="row">
-                    <div class="col-10 d-flex">
-                        <div class="team-logo" style="max-width: 47px;">
+                <div class="col-7">
+                  <div class="row team-info pb-1">
+                    <div class="col-12 d-flex">
+                        <div class="team-logo">
                             <img class="img-fluid" src="{{event.competitions?.[0]?.competitors?.[0]?.team?.logo}}">
                         </div>
-                        <div class="d-block">
-                            <span class="d-block team-name">{{event.competitions?.[0]?.competitors?.[0]?.team?.name}}</span>
+                        <div class="d-flex flex-column team-name align-self-center">
+                            <span class="d-block team-nickname">{{event.competitions?.[0]?.competitors?.[0]?.team?.shortDisplayName}}</span>
                         </div>
-                    </div>
-                    <div class="col-2 align-content-center">
-                        <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_FIRST_HALF' || event.status?.type?.name == 'STATUS_SECOND_HALF' || event.status?.type?.name == 'STATUS_HALFTIME' || event.status?.type?.name == 'STATUS_FULL_TIME'">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>
+                        <div class="d-block align-content-center score">
+                          <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_FIRST_HALF' || event.status?.type?.name == 'STATUS_SECOND_HALF' || event.status?.type?.name == 'STATUS_HALFTIME' || event.status?.type?.name == 'STATUS_FULL_TIME'">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-10 d-flex">
-                        <div class="team-logo" style="max-width: 47px;">
+                  <div class="row team-info pt-1">
+                    <div class="col-12 d-flex">
+                        <div class="team-logo">
                             <img class="img-fluid" src="{{event.competitions?.[0]?.competitors?.[1]?.team?.logo}}">
                         </div>
-                        <div class="d-block team-block">
-                            <span class="d-block team-name">{{event.competitions?.[0]?.competitors?.[1]?.team?.name}}</span>
+                        <div class="d-flex flex-column team-name align-self-center">
+                            <span class="d-block team-nickname">{{event.competitions?.[0]?.competitors?.[1]?.team?.shortDisplayName}}</span>
                         </div>
-                    </div>
-                    <div class="col-2 align-content-center ml-auto">
-                        <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_FIRST_HALF' || event.status?.type?.name == 'STATUS_SECOND_HALF' || event.status?.type?.name == 'STATUS_HALFTIME' || event.status?.type?.name == 'STATUS_FULL_TIME'">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
+                        <div class="d-block align-content-center score">
+                          <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_FIRST_HALF' || event.status?.type?.name == 'STATUS_SECOND_HALF' || event.status?.type?.name == 'STATUS_HALFTIME' || event.status?.type?.name == 'STATUS_FULL_TIME'">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-6 text-center align-content-center">
+                <div class="col-5 text-center align-content-center game-status">
                     <div *ngIf="event.status?.type?.name == 'STATUS_FIRST_HALF' || event.status?.type?.name == 'STATUS_SECOND_HALF' ||  event.status?.type?.name == 'STATUS_HALFTIME'|| event.status?.type?.name == 'STATUS_FULL_TIME'">
                         <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
                     </div>

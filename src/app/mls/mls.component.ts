@@ -22,7 +22,7 @@ export class MlsComponent implements OnInit, OnDestroy {
     if (!this.intervalId) { // Check if interval is already running
       this.fetchData();
       //this.intervalId = setInterval(() => this.fetchData(), 1 * 60 * 1000); // Set interval for 5 minutes (in milliseconds)
-      console.log(this.intervalId);
+      //console.log(this.intervalId);
     }
   }
 
@@ -34,7 +34,7 @@ export class MlsComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         // Update component properties with retrieved data (data processing might be needed)
         this.scoreboardData = data;
-        //console.log(this.scoreboardData);
+        console.log(this.scoreboardData);
       });
       console.log("Refreshed " + date);
   }

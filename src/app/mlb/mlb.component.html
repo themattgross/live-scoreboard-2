@@ -1,44 +1,43 @@
-<h2 class="text-center">{{scoreboardData?.leagues?.[0]?.abbreviation}}</h2>
-
-<div *ngIf="scoreboardData?.events?.length > 0" class="container">
+<div *ngIf="scoreboardData$ | async as scoreboardData" class="container">
+  <h2 class="text-center">{{scoreboardData.leagues?.[0]?.abbreviation}}</h2>
     <div class="row">
       <p><small>Data refreshes automatically every minute.</small></p>
-      <div *ngFor="let event of scoreboardData?.events" class="col-lg-4">
+      <div *ngFor="let event of scoreboardData?.events" class="col-lg-4 col-md-6 col-12">
         <div class="card my-3">
-          <div class="card-body">
+          <div class="card-body p-2">
             <div class="game">
               <div class="row">
-                <div class="col-6">
-                  <div class="row">
-                    <div class="col-10 d-flex">
-                        <div class="team-logo" style="max-width: 47px;">
+                <div class="col-7">
+                  <div class="row team-info pb-1">
+                    <div class="col-12 d-flex">
+                        <div class="team-logo">
                             <img class="img-fluid" src="{{event.competitions?.[0]?.competitors?.[1]?.team?.logo}}">
                         </div>
-                        <div class="d-block team-block">
+                        <div class="d-flex flex-column team-name align-self-center">
                             <span class="d-block team-location">{{event.competitions?.[0]?.competitors?.[1]?.team?.location}}</span>
-                            <span class="d-block team-name">{{event.competitions?.[0]?.competitors?.[1]?.team?.name}}</span>
+                            <span class="d-block team-nickname">{{event.competitions?.[0]?.competitors?.[1]?.team?.name}}</span>
                         </div>
-                    </div>
-                    <div class="col-2 align-content-center ml-auto">
-                        <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL'">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
+                        <div class="d-block align-content-center score">
+                          <span class="d-block justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL'">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-10 d-flex">
-                        <div class="team-logo" style="max-width: 47px;">
+                  <div class="row team-info pt-1">
+                    <div class="col-12 d-flex">
+                        <div class="team-logo">
                             <img class="img-fluid" src="{{event.competitions?.[0]?.competitors?.[0]?.team?.logo}}">
                         </div>
-                        <div class="d-block">
+                        <div class="d-flex flex-column team-name align-self-center">
                             <span class="d-block team-location">{{event.competitions?.[0]?.competitors?.[0]?.team?.location}}</span>
-                            <span class="d-block team-name">{{event.competitions?.[0]?.competitors?.[0]?.team?.name}}</span>
+                            <span class="d-block team-nickname">{{event.competitions?.[0]?.competitors?.[0]?.team?.name}}</span>
                         </div>
-                    </div>
-                    <div class="col-2 align-content-center">
-                        <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL'">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>
+                        <div class="d-block align-content-center score">
+                          <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL'">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-6 text-center align-content-center">
+                <div class="col-5 text-center align-content-center game-status">
                     <div *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS'">
                         <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
                         <span class="d-block">{{event.competitions?.[0]?.situation?.balls}}-{{event.competitions?.[0]?.situation?.strikes}}</span>

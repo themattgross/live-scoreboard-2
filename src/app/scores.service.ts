@@ -32,7 +32,7 @@ export class ScoresService {
     return this.getData(sport, league); // Call getData with sport and league values
   }
 
-  getData(sport: string, league: string): Observable<any> { // Replace 'any' with a specific interface if known
+  private getData(sport: string, league: string): Observable<any> { // Replace 'any' with a specific interface if known
     const apiUrl = `${this.scoreboardApiUrl}/${sport}/${league}/scoreboard`;
 
     return this.http.get<any>(apiUrl);
