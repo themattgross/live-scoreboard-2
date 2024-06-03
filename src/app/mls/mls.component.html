@@ -1,11 +1,11 @@
-<h2 class="text-center">{{scoreboardData?.leagues?.[0]?.abbreviation}}</h2>
+<h2 class="text-center">{{ (scoreboardData$ | async)?.leagues?.[0]?.abbreviation }}</h2>
 
-<div *ngIf="scoreboardData?.events?.length > 0" class="container">
+<div *ngIf="scoreboardData$ | async as scoreboardData" class="container">
     <div class="row">
-      <p><small>Data refreshes automatically every 5 minutes.</small></p>
+      <p><small>Data refreshes automatically every minute.</small></p>
       <div *ngFor="let event of scoreboardData?.events" class="col-lg-4">
         <div class="card my-3">
-          <div class="card-body">
+          <div class="card-body p-2">
             <div class="game">
               <div class="row">
                 <div class="col-7">

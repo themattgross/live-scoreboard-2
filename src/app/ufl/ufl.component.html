@@ -1,11 +1,11 @@
-<h2 class="text-center">{{scoreboardData?.leagues?.[0]?.abbreviation}}</h2>
+<h2 class="text-center">{{ (scoreboardData$ | async)?.leagues?.[0]?.abbreviation }}</h2>
 
-<div *ngIf="scoreboardData?.events?.length > 0" class="container">
+<div *ngIf="scoreboardData$ | async as scoreboardData" class="container">
     <div class="row">
-      <p><small>Data refreshes automatically every 5 minutes.</small></p>
+      <p><small>Data refreshes automatically every minute.</small></p>
       <div *ngFor="let event of scoreboardData?.events" class="col-lg-4">
         <div class="card my-3">
-          <div class="card-body">
+          <div class="card-body p-2">
             <div class="game">
               <div class="row">
                 <div class="col-7">
@@ -16,7 +16,7 @@
                         </div>
                         <div class="d-flex flex-column team-name align-self-center">
                             <span class="d-block team-location">{{event.competitions?.[0]?.competitors?.[1]?.team?.location}}</span>
-                            <span class="d-block team-name">{{event.competitions?.[0]?.competitors?.[1]?.team?.name}}</span>
+                            <span class="d-block team-nickname">{{event.competitions?.[0]?.competitors?.[1]?.team?.name}}</span>
                         </div>
                         <div class="d-block align-content-center score">
                           <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL'">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="d-flex flex-column team-name align-self-center">
                             <span class="d-block team-location">{{event.competitions?.[0]?.competitors?.[0]?.team?.location}}</span>
-                            <span class="d-block team-name">{{event.competitions?.[0]?.competitors?.[0]?.team?.name}}</span>
+                            <span class="d-block team-nickname">{{event.competitions?.[0]?.competitors?.[0]?.team?.name}}</span>
                         </div>
                         <div class="d-block align-content-center score">
                           <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL'">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>

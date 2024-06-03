@@ -1,42 +1,37 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ScoresService } from '../scores.service';
-import { HttpClientModule } from '@angular/common/http';
-import { NgIf, NgFor, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { Observable, interval, Subscription } from 'rxjs';
+import { switchMap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ufl',
   standalone: true,
-  imports: [HttpClientModule, NgIf, NgFor, CommonModule],
+  imports: [CommonModule],
   templateUrl: './ufl.component.html',
-  styleUrl: './ufl.component.scss'
+  styleUrls: ['./ufl.component.scss']
 })
 export class UflComponent implements OnInit, OnDestroy {
+  scoreboardData$!: Observable<any>;
+  private intervalSubscription!: Subscription;
 
-  constructor(private scoresService: ScoresService) { }
-
-  scoreboardData: any;
-  intervalId: any | null = null; // Initialize intervalId to null
+  constructor(private scoresService: ScoresService) {}
 
   ngOnInit() {
-    this.fetchData();
-    this.intervalId = setInterval(() => this.fetchData(), 5 * 60 * 1000); // Set interval for 5 minutes (in milliseconds)
-  }
-
-  fetchData() {
-    this.scoresService.getUfl()
-      .subscribe(data => {
-        // Update component properties with retrieved data (data processing might be needed)
-        this.scoreboardData = data;
-        console.log(this.scoreboardData);
-      });
-      console.log("Refreshed.");
+    this.scoreboardData$ = interval(1 * 60 * 1000).pipe(
+      startWith(0), // Fetch data immediately on initialization
+      switchMap(() => this.scoresService.getUfl())
+    );
+    this.intervalSubscription = this.scoreboardData$.subscribe(data => {
+      console.log("UFL Data refreshed.");
+    });
+    console.log("UFL Component Initialized.");
   }
 
   ngOnDestroy() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId); // Clear the interval when the component is destroyed to prevent memory leaks
+    if (this.intervalSubscription) {
+      this.intervalSubscription.unsubscribe();
     }
-    console.log("Destroyed.");
+    console.log("UFL Destroyed.");
   }
-
 }
