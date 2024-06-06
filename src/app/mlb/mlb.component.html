@@ -8,7 +8,7 @@
           <div class="card-body p-2">
             <div class="game">
               <div class="row">
-                <div class="col-7">
+                <div class="col-8">
                   <div class="row team-info pb-1">
                     <div class="col-12 d-flex">
                         <div class="team-logo">
@@ -18,8 +18,11 @@
                             <span class="d-block team-location">{{event.competitions?.[0]?.competitors?.[1]?.team?.location}}</span>
                             <span class="d-block team-nickname">{{event.competitions?.[0]?.competitors?.[1]?.team?.name}}</span>
                         </div>
-                        <div class="d-block align-content-center score">
-                          <span class="d-block justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY'">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
+                        <div class="d-block align-content-center text-right" style="font-size: smaller;" *ngIf="event.status?.type?.name == 'STATUS_SCHEDULED'">
+                          <span>{{event.competitions?.[0]?.competitors?.[1]?.probables[0]?.athlete?.shortName}}</span>
+                        </div>
+                        <div class="d-block align-content-center score" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY'">
+                          <span class="d-block justify-content-end">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
                       </div>
                     </div>
                   </div>
@@ -32,13 +35,16 @@
                             <span class="d-block team-location">{{event.competitions?.[0]?.competitors?.[0]?.team?.location}}</span>
                             <span class="d-block team-nickname">{{event.competitions?.[0]?.competitors?.[0]?.team?.name}}</span>
                         </div>
-                        <div class="d-block align-content-center score">
-                          <span class="d-flex justify-content-end" *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY'">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>
+                        <div class="d-block align-content-center text-right" style="font-size: smaller;" *ngIf="event.status?.type?.name == 'STATUS_SCHEDULED'">
+                          <span>{{event.competitions?.[0]?.competitors?.[0]?.probables[0]?.athlete?.shortName}}</span>
+                        </div>
+                        <div class="d-block align-content-center score"*ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY'">
+                          <span class="d-flex justify-content-end">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-5 text-center align-content-center game-status">
+                <div class="col-4 text-center align-content-center game-status">
                     <div *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS'">
                         <span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
                         <span class="d-block">{{event.competitions?.[0]?.situation?.balls}}-{{event.competitions?.[0]?.situation?.strikes}}</span>
