@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StandingsService } from '../standings.service';
+import { StandingsService } from '../../standings.service';
 import { CommonModule } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { switchMap, startWith } from 'rxjs/operators';
@@ -7,15 +7,14 @@ import { switchMap, startWith } from 'rxjs/operators';
 //interface here
 
 @Component({
-  selector: 'app-standings',
+  selector: 'app-mlb-standings',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './standings.component.html',
-  styleUrl: './standings.component.scss'
+  templateUrl: './mlb-standings.component.html',
+  styleUrl: './mlb-standings.component.scss'
 })
-export class StandingsComponent implements OnInit {
+export class MlbStandingsComponent implements OnInit {
 
-  league: string = 'mlb'; // Default league
   /* standings: Standing[] | null = null; */
   standings$!: Observable<any>;
   error: any = null;
