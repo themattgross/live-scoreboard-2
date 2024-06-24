@@ -1,0 +1,19 @@
+<div class="leagues-menu" *ngIf="isVisible">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav nav-pills" *ngIf="currentLeague === 'MLB'">
+                    <li class="nav-item bg-black align-content-center">
+                        <a class="nav-link parent-link text-white py-0" routerLink="/mlb">MLB</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/mlb" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Scores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/mlb/standings" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Standings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StandingsService } from '../../standings.service';
 import { CommonModule } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { switchMap, startWith } from 'rxjs/operators';
   templateUrl: './mlb-standings.component.html',
   styleUrl: './mlb-standings.component.scss'
 })
-export class MlbStandingsComponent implements OnInit {
+export class MlbStandingsComponent implements OnInit, OnDestroy {
 
   /* standings: Standing[] | null = null; */
   standings$!: Observable<any>;
@@ -37,6 +37,10 @@ export class MlbStandingsComponent implements OnInit {
       console.log(data);
     });
     console.log("Standings Initialized.");
+  }
+
+  ngOnDestroy(): void {
+    console.log("MLB Standings destroyed.");
   }
 
 }

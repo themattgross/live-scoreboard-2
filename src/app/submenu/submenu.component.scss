@@ -1,0 +1,20 @@
+.leagues-menu {
+    background-color: lightgrey;
+
+    .nav-pills {
+
+        .nav-link {
+            color: black;
+
+            &.parent-link {
+                font-weight: bold;
+                font-size: larger;
+                line-height: 0.8;
+            }
+
+            &.active {
+                color: white;
+            }
+        }
+    }
+}
