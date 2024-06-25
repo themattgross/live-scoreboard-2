@@ -32,3 +32,36 @@
         font-size: small;
     }
 }
+
+.standings-table {
+
+    vertical-align: middle;
+
+    .standings-headings {
+
+        th {
+            text-align: right;
+
+            &:first-of-type {
+                text-align: left;
+            }
+        }
+    }
+
+    .standings-entries {
+        table-layout: fixed;
+
+        .team-name {
+            width: auto;
+
+            .team-name-inside {
+                width: 200px;
+            }
+        }
+
+        td {
+            min-width: 54px;
+            text-align: right;
+        }
+    }
+}

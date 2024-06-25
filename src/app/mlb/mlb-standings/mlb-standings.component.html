@@ -1,0 +1,38 @@
+<div *ngIf="standings$ | async as standings">
+    <h2 class="text-center"><span>{{ standings.abbreviation }} </span>Standings</h2>
+    
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let league of standings?.children" class="col-lg-6">
+                <h3>{{ league.name }}</h3>
+                <div class="table-responsive-md">
+                  <table *ngFor="let division of league?.children" class="table table-sm standings-table">
+                    <thead class="table-dark standings-headings">
+                      <tr>
+                        <th scope="col">{{ division.shortName }}</th>
+                        <th scope="col">W</th>
+                        <th scope="col">L</th>
+                        <th scope="col">PCT</th>
+                        <th scope="col">GB</th>
+                      </tr>
+                    </thead>
+                    <tbody class="standings-entries">
+                      <tr *ngFor="let entry of division?.standings?.entries">
+                        <th class="team-name" scope="row">
+                          <div class="team-name-inside">
+                            <img style="width: 18px;" src="{{ entry.team.logos[0].href }}"> {{ entry.team.displayName }}
+                          </div>
+                        </th>
+                        <td>{{ entry.stats[18].displayValue }}</td>
+                        <td>{{ entry.stats[9].displayValue }}</td>
+                        <td>{{ entry.stats[17].displayValue }}</td>
+                        <td>{{ entry.stats[6].displayValue }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
