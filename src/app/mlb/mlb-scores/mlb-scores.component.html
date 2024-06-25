@@ -22,8 +22,9 @@
 										</div>
 										<div class="d-block align-content-center text-right" style="font-size: smaller;"
 											*ngIf="event.status?.type?.name == 'STATUS_SCHEDULED'">
-											<span>{{event.competitions?.[0]?.competitors?.[1]?.probables[0]?.athlete?.shortName
-												?? 'TBD'}}</span>
+											<span *ngIf="event.competitions?.[0]?.competitors?.[1]?.probables">
+												{{event.competitions?.[0]?.competitors?.[1]?.probables?.[0]?.athlete?.shortName ?? 'TBD'}}
+											</span>
 										</div>
 										<div class="d-block align-content-center score"
 											*ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY'">
@@ -46,8 +47,9 @@
 										</div>
 										<div class="d-block align-content-center text-right" style="font-size: smaller;"
 											*ngIf="event.status?.type?.name == 'STATUS_SCHEDULED'">
-											<span>{{event.competitions?.[0]?.competitors?.[0]?.probables[0]?.athlete?.shortName
-												?? 'TBD'}}</span>
+											<span *ngIf="event.competitions?.[0]?.competitors?.[1]?.probables">
+												{{event.competitions?.[0]?.competitors?.[0]?.probables?.[0]?.athlete?.shortName ?? 'TBD'}}
+											</span>
 										</div>
 										<div class="d-block align-content-center score"
 											*ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY'">
