@@ -64,4 +64,13 @@
             text-align: right;
         }
     }
+
+    &.wildcard-standings-table {
+
+        tr {
+            &:nth-child(3) {
+                border-color: black;
+            }
+        }
+    }
 }

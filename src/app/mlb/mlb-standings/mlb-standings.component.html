@@ -1,38 +1,95 @@
-<div *ngIf="standings$ | async as standings">
-    <h2 class="text-center"><span>{{ standings.abbreviation }} </span>Standings</h2>
-    
-    <div class="container">
-        <div class="row">
-            <div *ngFor="let league of standings?.children" class="col-lg-6">
-                <h3>{{ league.name }}</h3>
-                <div class="table-responsive-md">
-                  <table *ngFor="let division of league?.children" class="table table-sm standings-table">
-                    <thead class="table-dark standings-headings">
-                      <tr>
-                        <th scope="col">{{ division.shortName }}</th>
-                        <th scope="col">W</th>
-                        <th scope="col">L</th>
-                        <th scope="col">PCT</th>
-                        <th scope="col">GB</th>
-                      </tr>
-                    </thead>
-                    <tbody class="standings-entries">
-                      <tr *ngFor="let entry of division?.standings?.entries">
-                        <th class="team-name" scope="row">
-                          <div class="team-name-inside">
-                            <img style="width: 18px;" src="{{ entry.team.logos[0].href }}"> {{ entry.team.displayName }}
-                          </div>
-                        </th>
-                        <td>{{ entry.stats[18].displayValue }}</td>
-                        <td>{{ entry.stats[9].displayValue }}</td>
-                        <td>{{ entry.stats[17].displayValue }}</td>
-                        <td>{{ entry.stats[6].displayValue }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container pb-5">
+  <h1 class="text-center mb-4 p-3">MLB Standings</h1>
 
+  <ul class="nav nav-tabs justify-content-center mt-3" id="standingsLinks" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="division-tab" data-bs-toggle="tab" data-bs-target="#division-tab-pane" type="button" role="tab" aria-controls="division-tab-pane" aria-selected="true">Division</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="wildcard-tab" data-bs-toggle="tab" data-bs-target="#wildcard-tab-pane" type="button" role="tab" aria-controls="wildcard-tab-pane" aria-selected="false">Wild Card</button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="standingsTabsContent">
+    <div class="tab-pane fade show active" id="division-tab-pane" role="tabpanel" aria-labelledby="division-tab" tabindex="0">
+      <div *ngIf="standings$ | async as standings">
+        <h2 class="text-center mb-4 p-3">Division</h2>
+      
+        <div class="container">
+          <div class="row">
+            <div *ngFor="let league of standings?.children" class="col-lg-6">
+              <h3>{{ league.name }}</h3>
+              <div class="table-responsive-md">
+                <table *ngFor="let division of league?.children" class="table table-sm standings-table">
+                  <thead class="table-dark standings-headings">
+                    <tr>
+                      <th scope="col">{{ division.shortName }}</th>
+                      <th scope="col">W</th>
+                      <th scope="col">L</th>
+                      <th scope="col">PCT</th>
+                      <th scope="col">GB</th>
+                    </tr>
+                  </thead>
+                  <tbody class="standings-entries">
+                    <tr *ngFor="let entry of division?.standings?.entries">
+                      <th class="team-name" scope="row">
+                        <div class="team-name-inside">
+                          <img style="width: 18px;" src="{{ entry.team.logos[0].href }}"> {{ entry.team.displayName }}
+                        </div>
+                      </th>
+                      <td>{{ entry.stats[18].displayValue }}</td>
+                      <td>{{ entry.stats[9].displayValue }}</td>
+                      <td>{{ entry.stats[17].displayValue }}</td>
+                      <td>{{ entry.stats[6].displayValue }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    <div class="tab-pane fade" id="wildcard-tab-pane" role="tabpanel" aria-labelledby="wildcard-tab" tabindex="0">
+      
+      <div *ngIf="wildcardStandings$ | async as wildcardStandings">
+        <div class="container">
+          <h2 class="text-center mb-4 p-3">Wild Card</h2>
+          <div class="row">
+            <div *ngFor="let league of wildcardStandings.children" class="col-lg-6">
+              <h3>{{ league.name }}</h3>
+              <div class="table-responsive-md">
+                <table class="table table-sm standings-table wildcard-standings-table">
+                  <thead class="table-dark standings-headings">
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">W</th>
+                      <th scope="col">L</th>
+                      <th scope="col">PCT</th>
+                      <th scope="col">GB</th>
+                    </tr>
+                  </thead>
+                  <tbody class="standings-entries">
+                    <tr *ngFor="let entry of league?.standings?.entries">
+                      <th class="team-name" scope="row">
+                        <div class="team-name-inside">
+                          <img style="width: 18px;" src="{{ entry.team.logos[0].href }}"> {{ entry.team.displayName }}
+                        </div>
+                      </th>
+                      <td>{{ entry.stats[18].displayValue }}</td>
+                      <td>{{ entry.stats[9].displayValue }}</td>
+                      <td>{{ entry.stats[17].displayValue }}</td>
+                      <td>{{ entry.stats[6].displayValue }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

@@ -1,5 +1,5 @@
-<h2 class="text-center">MLB</h2>
-<div *ngIf="scoreboardData$ | async as scoreboardData" class="container">
+<h1 class="text-center mb-4 p-3">MLB</h1>
+<div *ngIf="scoreboardData$ | async as scoreboardData" class="container pb-5">
 	<div class="row">
 		<p><small>Data refreshes automatically every minute.</small></p>
 		<div *ngFor="let event of scoreboardData?.events" class="col-lg-4 col-md-6 col-12">
