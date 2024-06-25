@@ -19,6 +19,14 @@ export class StandingsService {
     return this.getData(sport, league, params); // Call getData with sport and league values
   }
 
+  getMlbWildcard(): Observable<any> {
+    const sport = "baseball";
+    const league = "mlb";
+    const params = "?type=1&level=2&seasontype=2";
+
+    return this.getData(sport, league, params); // Call getData with sport and league values
+  }
+
   private getData(sport: string, league: string, params: string): Observable<any> { // Replace 'any' with a specific interface if known
     const apiUrl = `${this.standingsApiUrl}/${sport}/${league}/standings${params}`;
 

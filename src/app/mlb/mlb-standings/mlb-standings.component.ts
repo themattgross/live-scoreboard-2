@@ -17,6 +17,7 @@ export class MlbStandingsComponent implements OnInit, OnDestroy {
 
   /* standings: Standing[] | null = null; */
   standings$!: Observable<any>;
+  wildcardStandings$!: Observable<any>;
   error: any = null;
   private standingsSubscription!: Subscription;
 
@@ -25,6 +26,7 @@ export class MlbStandingsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getStandings();
     console.log(this.standings$!);
+    console.log(this.wildcardStandings$!);
   }
 
   getStandings() {
@@ -32,11 +34,17 @@ export class MlbStandingsComponent implements OnInit, OnDestroy {
       startWith(0), // Fetch data immediately on initialization
       switchMap(() => this.standingsService.getMlbDivision())
     );
-    this.standingsSubscription = this.standings$.subscribe(data => {
-      console.log("Standings loaded.");
+    console.log("MLB division standings initialized.");
+
+    this.wildcardStandings$ = this.standingsService.getMlbWildcard().pipe(
+      startWith(0), // Fetch data immediately on initialization
+      switchMap(() => this.standingsService.getMlbWildcard())
+    );
+    /* this.standingsSubscription = this.wildcardStandings$.subscribe(data => {
+      console.log("MLB wild card standings refreshed.");
       console.log(data);
-    });
-    console.log("Standings Initialized.");
+    }); */
+    console.log("MLB wild card standings initialized.");
   }
 
   ngOnDestroy(): void {
