@@ -60,10 +60,17 @@
 								</div>
 							</div>
 							<div class="col-4 text-center align-content-center game-status">
-								<div *ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS'">
-									<span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
-									<span
-										class="d-block">{{event.competitions?.[0]?.situation?.balls}}-{{event.competitions?.[0]?.situation?.strikes}}</span>
+								<span class="d-block" *ngIf="event?.status?.type?.name == 'STATUS_IN_PROGRESS'">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
+								<div *ngIf="event?.status?.type?.name == 'STATUS_IN_PROGRESS' && event?.competitions?.[0]?.situation?.lastPlay?.type?.type !== 'end-inning'">
+									<div class="d-flex justify-content-evenly">
+										<span class="d-block">
+											<div class="bases flex-row">
+												<span class="base third-base" [ngClass]="{'onbase': event.competitions?.[0]?.situation?.onThird == true}"></span>
+												<span class="base second-base" [ngClass]="{'onbase': event.competitions?.[0]?.situation?.onSecond == true}"></span>
+												<span class="base first-base" [ngClass]="{'onbase': event.competitions?.[0]?.situation?.onFirst == true}"></span></div>
+											</span>
+										<span class="d-block">{{event.competitions?.[0]?.situation?.balls}}-{{event.competitions?.[0]?.situation?.strikes}}</span>
+									</div>
 									<span class="d-block">{{event.competitions?.[0]?.outsText}}</span>
 								</div>
 								<div *ngIf="event.status?.type?.name == 'STATUS_SCHEDULED'">

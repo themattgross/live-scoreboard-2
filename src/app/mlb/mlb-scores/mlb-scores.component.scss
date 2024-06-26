@@ -1,0 +1,33 @@
+.bases {
+    display: flex;
+    flex-direction: row;
+    width: 45px;
+    justify-content: space-around;
+    align-items: center;
+    height: 45px;
+    margin: 6px 0px 0 0;
+    //position: relative;
+    position: absolute;
+    transform: scale(0.5);
+    top: 19px;
+    right: 60px;
+
+    .base {
+        width: 15px;
+        height: 15px;
+        background: lightgrey;
+        border-radius: 0;
+        box-shadow: none;
+        transform: rotate(45deg);
+        z-index: 1;
+        border: 1px solid lightgrey;
+
+        &.second-base {
+            align-self: flex-start;
+        }
+
+        &.onbase {
+            background-color: #0d6efd;
+        }
+    }
+}
