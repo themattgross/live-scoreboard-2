@@ -84,6 +84,9 @@
 						</div>
 					</div>
 				</div>
+				<div *ngIf="event?.competitions?.[0]?.notes?.[0]?.headline" class="card-footer" style="font-size: smaller;">
+					{{ event?.competitions?.[0]?.notes?.[0]?.headline }}
+				</div>
 			</div>
 		</div>
 	</div>
