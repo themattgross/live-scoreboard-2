@@ -1,0 +1,46 @@
+<h1 class="text-center mb-4 p-3">MLS Table</h1>
+<div *ngIf="standings$ | async as mlsTable">
+  
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let conference of mlsTable?.children" class="col-lg-6">
+          <h3>{{ conference.name }}</h3>
+          <div class="table-responsive-md">
+            <table class="table table-sm standings-table">
+              <thead class="table-dark standings-headings">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">GP</th>
+                  <th scope="col">W</th>
+                  <th scope="col">D</th>
+                  <th scope="col">L</th>
+                  <th scope="col">F</th>
+                  <th scope="col">A</th>
+                  <th scope="col">GD</th>
+                  <th scope="col">P</th>
+                </tr>
+              </thead>
+              <tbody class="standings-entries">
+                <tr *ngFor="let entry of conference?.standings?.entries">
+                  <th class="team-name" scope="row">
+                    <div class="team-name-inside">
+                        <span style="display: inline-block; width: 15px; text-align: right; font-weight: 400; font-size: 0.8rem;">{{ entry.stats[10].displayValue }}</span>&nbsp;<img style="width: 18px;" src="{{ entry.team.logos[0].href }}"> {{ entry.team.shortDisplayName }}
+                    </div>
+                  </th>
+                  <td>{{ entry.stats[0].displayValue }}</td>
+                  <td>{{ entry.stats[7].displayValue }}</td>
+                  <td>{{ entry.stats[6].displayValue }}</td>
+                  <td>{{ entry.stats[1].displayValue }}</td>
+                  <td>{{ entry.stats[5].displayValue }}</td>
+                  <td>{{ entry.stats[4].displayValue }}</td>
+                  <td>{{ entry.stats[2].displayValue }}</td>
+                  <td style="background-color: gainsboro;">{{ entry.stats[3].displayValue }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

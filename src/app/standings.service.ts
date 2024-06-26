@@ -27,6 +27,14 @@ export class StandingsService {
     return this.getData(sport, league, params); // Call getData with sport and league values
   }
 
+  getMlsTable(): Observable<any> {
+    const sport = "soccer";
+    const league = "usa.1";
+    const params = "?sort=rank%3Aasc";
+
+    return this.getData(sport, league, params); // Call getData with sport and league values
+  }
+
   private getData(sport: string, league: string, params: string): Observable<any> { // Replace 'any' with a specific interface if known
     const apiUrl = `${this.standingsApiUrl}/${sport}/${league}/standings${params}`;
 

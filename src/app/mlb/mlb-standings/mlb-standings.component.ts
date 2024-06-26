@@ -25,8 +25,6 @@ export class MlbStandingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getStandings();
-    console.log(this.standings$!);
-    console.log(this.wildcardStandings$!);
   }
 
   getStandings() {
