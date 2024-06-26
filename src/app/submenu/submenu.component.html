@@ -13,6 +13,17 @@
                         <a class="nav-link" routerLink="/mlb/standings" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Standings</a>
                     </li>
                 </ul>
+                <ul class="nav nav-pills" *ngIf="currentLeague === 'MLS'">
+                    <li class="nav-item bg-black align-content-center">
+                        <a class="nav-link parent-link text-white py-0" routerLink="/mls">MLS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/mls" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Scores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/mls/table" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Table</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
