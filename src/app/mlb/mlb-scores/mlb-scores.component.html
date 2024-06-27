@@ -27,7 +27,7 @@
 											</span>
 										</div>
 										<div class="d-block align-content-center score"
-											*ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY'">
+											*ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY' || event.status?.type?.name == 'STATUS_SUSPENDED'">
 											<span
 												class="d-block justify-content-end">{{event.competitions?.[0]?.competitors?.[1]?.score}}</span>
 										</div>
@@ -52,7 +52,7 @@
 											</span>
 										</div>
 										<div class="d-block align-content-center score"
-											*ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY'">
+											*ngIf="event.status?.type?.name == 'STATUS_IN_PROGRESS' || event.status?.type?.name == 'STATUS_FINAL' || event.status?.type?.name == 'STATUS_RAIN_DELAY' || event.status?.type?.name == 'STATUS_SUSPENDED'">
 											<span
 												class="d-flex justify-content-end">{{event.competitions?.[0]?.competitors?.[0]?.score}}</span>
 										</div>
@@ -84,7 +84,7 @@
 								<div *ngIf="event.status?.type?.name == 'STATUS_FINAL'">
 									<span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
 								</div>
-								<div *ngIf="event.status?.type?.name == 'STATUS_POSTPONED'">
+								<div *ngIf="event.status?.type?.name == 'STATUS_POSTPONED' || event.status?.type?.name == 'STATUS_SUSPENDED'">
 									<span class="d-block">{{event.competitions?.[0]?.status?.type?.shortDetail}}</span>
 								</div>
 							</div>
