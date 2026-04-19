@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StandingsService } from '../../standings.service';
 import { CommonModule } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
-import { switchMap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-mls-table',
@@ -23,10 +22,7 @@ export class MlsTableComponent implements OnInit, OnDestroy {
   }
 
   getStandings() {
-    this.standings$ = this.standingsService.getMlsTable().pipe(
-      startWith(0), // Fetch data immediately on initialization
-      switchMap(() => this.standingsService.getMlsTable())
-    );
+    this.standings$ = this.standingsService.getMlsTable();
     console.log("MLS table initialized.");
   }
 

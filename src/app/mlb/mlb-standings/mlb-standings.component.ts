@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StandingsService } from '../../standings.service';
 import { CommonModule } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
-import { switchMap, startWith } from 'rxjs/operators';
 
 //interface here
 
@@ -28,16 +27,10 @@ export class MlbStandingsComponent implements OnInit, OnDestroy {
   }
 
   getStandings() {
-    this.standings$ = this.standingsService.getMlbDivision().pipe(
-      startWith(0), // Fetch data immediately on initialization
-      switchMap(() => this.standingsService.getMlbDivision())
-    );
+    this.standings$ = this.standingsService.getMlbDivision();
     console.log("MLB division standings initialized.");
 
-    this.wildcardStandings$ = this.standingsService.getMlbWildcard().pipe(
-      startWith(0), // Fetch data immediately on initialization
-      switchMap(() => this.standingsService.getMlbWildcard())
-    );
+    this.wildcardStandings$ = this.standingsService.getMlbWildcard();
     /* this.standingsSubscription = this.wildcardStandings$.subscribe(data => {
       console.log("MLB wild card standings refreshed.");
       console.log(data);
