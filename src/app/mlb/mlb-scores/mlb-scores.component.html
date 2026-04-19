@@ -14,7 +14,7 @@
 <div *ngIf="scoreboardData$ | async as scoreboardData" class="container pb-5">
 	<div class="row">
 		<p><small>Data refreshes automatically every minute.</small></p>
-		<div *ngFor="let event of scoreboardData?.events" class="col-lg-4 col-md-6 col-12">
+		<div *ngFor="let event of scoreboardData?.events; trackBy: trackByEventId" class="col-lg-4 col-md-6 col-12">
 			<div class="card my-3">
 				<div class="card-body p-2">
 					<div class="game">

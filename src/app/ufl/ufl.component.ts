@@ -28,4 +28,8 @@ export class UflComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     console.log("UFL Destroyed.");
   }
+
+  trackByEventId(index: number, event: any): string {
+    return event.id;
+  }
 }

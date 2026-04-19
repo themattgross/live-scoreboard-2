@@ -28,4 +28,8 @@ export class MlsScoresComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     console.log("MLS Destroyed.");
   }
+
+  trackByEventId(index: number, event: any): string {
+    return event.id;
+  }
 }

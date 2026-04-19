@@ -100,4 +100,8 @@ export class MlbScoresComponent implements OnInit, OnDestroy {
   get isTodaySelected(): boolean {
     return this.isToday(this.currentDate);
   }
+
+  trackByEventId(index: number, event: any): string {
+    return event.id;
+  }
 }
