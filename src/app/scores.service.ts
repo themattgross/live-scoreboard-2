@@ -11,11 +11,11 @@ export class ScoresService {
 
   constructor(private http: HttpClient) { }
 
-  getMlb(): Observable<any> {
+  getMlb(dateStr?: string): Observable<any> {
     const sport = "baseball";
     const league = "mlb";
 
-    return this.getData(sport, league); // Call getData with sport and league values
+    return this.getData(sport, league, dateStr); // Call getData with sport and league values
   }
 
   getUfl(): Observable<any> {
@@ -32,8 +32,11 @@ export class ScoresService {
     return this.getData(sport, league); // Call getData with sport and league values
   }
 
-  private getData(sport: string, league: string): Observable<any> { // Replace 'any' with a specific interface if known
-    const apiUrl = `${this.scoreboardApiUrl}/${sport}/${league}/scoreboard`;
+  private getData(sport: string, league: string, dateStr?: string): Observable<any> { // Replace 'any' with a specific interface if known
+    let apiUrl = `${this.scoreboardApiUrl}/${sport}/${league}/scoreboard`;
+    if (dateStr) {
+      apiUrl += `?dates=${dateStr}`;
+    }
 
     return this.http.get<any>(apiUrl);
   }
