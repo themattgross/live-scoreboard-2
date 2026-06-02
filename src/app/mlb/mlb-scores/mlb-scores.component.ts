@@ -16,14 +16,14 @@ export class MlbScoresComponent implements OnInit, OnDestroy {
   currentDate: Date = new Date();
   dateSubject: BehaviorSubject<Date> = new BehaviorSubject<Date>(this.currentDate);
 
-  constructor(private scoresService: ScoresService) {}
+  constructor(private scoresService: ScoresService) { }
 
   ngOnInit() {
     this.scoreboardData$ = this.dateSubject.pipe(
       switchMap(date => {
         const isToday = this.isToday(date);
         const dateStr = this.formatDateStr(date);
-        
+
         if (isToday) {
           // Poll every minute if it's today
           return interval(1 * 60 * 1000).pipe(
@@ -85,7 +85,7 @@ export class MlbScoresComponent implements OnInit, OnDestroy {
     const current = new Date(this.currentDate);
     current.setHours(0, 0, 0, 0);
     const diffTime = Math.round((today.getTime() - current.getTime()) / (1000 * 3600 * 24));
-    return diffTime >= 1;
+    return diffTime >= 7;
   }
 
   get isNextDisabled(): boolean {
@@ -94,7 +94,7 @@ export class MlbScoresComponent implements OnInit, OnDestroy {
     const current = new Date(this.currentDate);
     current.setHours(0, 0, 0, 0);
     const diffTime = Math.round((current.getTime() - today.getTime()) / (1000 * 3600 * 24));
-    return diffTime >= 1;
+    return diffTime >= 7;
   }
 
   get isTodaySelected(): boolean {
