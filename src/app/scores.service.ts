@@ -25,11 +25,11 @@ export class ScoresService {
     return this.getData(sport, league); // Call getData with sport and league values
   }
 
-  getMls(): Observable<any> {
+  getMls(dateStr?: string): Observable<any> {
     const sport = "soccer";
     const league = "usa.1";
 
-    return this.getData(sport, league); // Call getData with sport and league values
+    return this.getData(sport, league, dateStr); // Call getData with sport and league values
   }
 
   private getData(sport: string, league: string, dateStr?: string): Observable<any> { // Replace 'any' with a specific interface if known
